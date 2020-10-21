@@ -1,0 +1,85 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div fxLayout="row wrap">
+    <!-- column -->
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="type">
+                      <th mat-header-cell *matHeaderCellDef> Type </th>
+                      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="email">
+                      <th mat-header-cell *matHeaderCellDef> Email </th>
+                      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="phone">
+                      <th mat-header-cell *matHeaderCellDef> Phone </th>
+                      <td mat-cell *matCellDef="let element">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Ex. Pizza" [(ngModel)]= "element.phone">
+                          </mat-form-field> 
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                        <td mat-cell *matCellDef="let element"> <mat-form-field appearance="fill">
+                            <mat-select  [(value)]="element.status_id" (selectionChange)="updateStatus($event.value, element)">
+                              <mat-option *ngFor="let status of php.statuses" [value]="status.value">
+                                
+                                {{status.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field> </td>
+                      </ng-container>
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>  </th>
+                        <td mat-cell *matCellDef="let element">    &nbsp; <button mat-raised-button color="primary">Chat</button>&nbsp;
+                            <button mat-raised-button (click)="call(element)" color="accent">Call</button>&nbsp;
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                              </button>
+                              <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
+                                <button mat-menu-item>
+                                  <span>Send intro</span>
+                                </button>
+                                <button mat-menu-item (click)="openDialog(element)">
+                                  <span>Provide feedback</span>
+                                </button>
+                                <button mat-menu-item>
+                                  <span>Send reminder</span>
+                                </button>
+                                <button mat-menu-item>
+                                    <span>Background check</span>
+                                  </button>
+                              </mat-menu>
+                         </td>
+                      </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+    </div>
+</div>
+  

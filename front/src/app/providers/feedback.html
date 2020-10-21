@@ -1,0 +1,20 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div fxLayout="row wrap">
+  <span>Set rating</span>
+  <div class="full">
+  <mat-icon [class.yellow]="hovered_value > 0" (click)="select(1)" (mouseenter) ="setHover(1)"  (mouseleave) ="setHover(0)">star</mat-icon>
+  <mat-icon [class.yellow]="hovered_value > 1" (click)="select(2)" (mouseenter) ="setHover(2)"  (mouseleave) ="setHover(0)">star</mat-icon>
+  <mat-icon [class.yellow]="hovered_value > 2" (click)="select(3)" (mouseenter) ="setHover(3)"  (mouseleave) ="setHover(0)">star</mat-icon>
+  <mat-icon [class.yellow]="hovered_value > 3" (click)="select(4)" (mouseenter) ="setHover(4)"  (mouseleave) ="setHover(0)">star</mat-icon>
+  <mat-icon [class.yellow]="hovered_value > 4" (click)="select(5)" (mouseenter) ="setHover(5)"  (mouseleave) ="setHover(0)">star</mat-icon>
+  </div>
+  <br>
+  <mat-form-field>
+    <textarea [(ngModel)]="message" matInput placeholder="Provide feedback" matTextareaAutosize matAutosizeMinRows="2"
+              matAutosizeMinRows="4"></textarea>
+  </mat-form-field>
+  <button mat-raised-button (click)="onNoClick()" color="accent" style="width: 100%;">Save</button>
+</div>
+  
